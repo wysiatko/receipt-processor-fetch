@@ -1,11 +1,14 @@
 package com.lucas.receipt.processor.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ReceiptController {
+
+    @PostMapping("/receipts/process")
+    public Long processReceipts(@RequestBody ) {
+        return 5L;
+    }
 
     @GetMapping("/receipts/{id}/points")
     public Long getReceiptPoints(@PathVariable("id") long id) {
