@@ -1,6 +1,6 @@
 package com.lucas.receipt.processor.repositories.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class ReceiptDataObject {
