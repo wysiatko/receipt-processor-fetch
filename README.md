@@ -1,3 +1,10 @@
+# Running Receipt Processor 
+To run my receipt processor service, please execute the below two commands to create a Docker image and run it using the provided Dockerfile.
+1) `docker build --platform linux/amd64 -t receipt-processor .`
+2) `docker run -p 8080:8080 -t --name receipt-processor receipt-processor`
+
+When done running the service, please execute: `docker stop receipt-processor`
+
 # Receipt Processor
 
 Build a webservice that fulfils the documented API. The API is described below. A formal definition is provided 
