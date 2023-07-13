@@ -38,7 +38,7 @@ public class ReceiptService {
         return ImmutableReceiptPointsResponse.builder().points(receipt.getPoints()).build();
     }
 
-    private static long calculatePoints(ReceiptRequest receipt) {
+    public static long calculatePoints(ReceiptRequest receipt) {
 
         long totalPoints = 0;
         totalPoints += alphaNumericCharactersInString(receipt.getRetailer());
