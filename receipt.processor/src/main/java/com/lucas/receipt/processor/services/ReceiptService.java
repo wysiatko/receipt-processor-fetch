@@ -11,6 +11,8 @@ import com.lucas.receipt.processor.repositories.entities.ReceiptDataObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Pattern;
+
 @Service
 public class ReceiptService {
 
@@ -70,28 +72,54 @@ public class ReceiptService {
         return totalPoints;
     }
 
-    // TODO
     private static long alphaNumericCharactersInString(String string) {
-        return 0;
+
+        char[] characters = string.toCharArray();
+
+        int count = 0;
+
+        for (char character : characters) {
+
+            if (Character.isLetter(character) || Character.isDigit(character)) {
+                count++;
+            }
+        }
+
+        return count;
     }
 
-    // TODO
     private static boolean isRoundDollarAmount(double cost) {
-        return false;
+        return getDecimalValue(cost) == 0;
     }
 
-    // TODO
     private static boolean isMultipleOf25Cents(double cost) {
-        return false;
+
+        int cents = getDecimalValue(cost);
+
+        return cents % 25 == 0;
     }
 
-    // TODO
     private static boolean isDateOdd(String date) {
-        return false;
+
+        String[] yearMonthDay = date.split("-");
+
+        return Integer.parseInt(yearMonthDay[2]) % 2 != 0;
     }
 
-    // TODO
     private static boolean isTimeBetween2pmAnd4pm(String time) {
-        return false;
+
+        time = time.replace(":", "");
+        int hourMin = Integer.parseInt(time);
+
+        return hourMin > 1400 && hourMin < 1600;
+    }
+
+    private static int getDecimalValue(double cost) {
+
+        String costAsString = String.valueOf(cost);
+
+        String[] intDecimal = costAsString.split("\\.");
+
+        return Integer.parseInt(intDecimal[1]);
     }
 }
